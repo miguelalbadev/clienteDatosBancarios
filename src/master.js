@@ -1,7 +1,12 @@
-import Vue from 'vue'
+import Vue from 'vue';
+import detail from './detail.vue';
 
 
 Vue.component('master', {
+  components: {
+      detail
+  },
+
   template: `
     <div id="app">
       <div id="master">
@@ -16,9 +21,11 @@ Vue.component('master', {
     </div>
     `,
 
-  data: {
+  data() {
+    return {
       personasList: [],
       personaSelected: null
+    };
   },
 
   mounted() {
@@ -63,7 +70,6 @@ Vue.component('master', {
 
     cargaListado() {
       $.ajax({
-
         url: "http://10.60.23.21:50940/api/Personas/",
         type: 'GET',
 
@@ -99,6 +105,6 @@ Vue.component('master', {
 var app = new Vue({
   el: '#app',
   created(){
-    window.Vue = 'this';
+    window.Vue = this;
   }
 })
