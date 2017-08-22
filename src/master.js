@@ -11,7 +11,7 @@ Vue.component('master', {
     <div id="app">
       <div id="master">
         <li v-for="persona in personasList">
-          <a @href.prevent="" v-on:click="selectPersona(todo.id)">
+          <a @href.prevent="" v-on:click="selectPersona(persona.Id)">
             {{ persona.Nombre }} {{ persona.Apellidos }}
           </a>
         </li>
@@ -38,7 +38,7 @@ Vue.component('master', {
       app2.seen = true;
       $.ajax({
 
-        url: "http://10.60.23.21:50940/api/Personas/" + id,
+        url: "http://192.168.1.38:50940/api/Personas/" + id,
         type: 'GET',
 
         // el tipo de información que se espera de respuesta
@@ -55,7 +55,8 @@ Vue.component('master', {
               persona.Apellidos = data[i].Apellidos;
               persona.Edad = data[i].Edad;
               persona.Genero = data[i].Genero;
-              this.personasList.push(persona);
+              app.$children[0].personasList.push(persona);
+              
           }
         },
         error: function(xhr, status) {
@@ -70,7 +71,7 @@ Vue.component('master', {
 
     cargaListado() {
       $.ajax({
-        url: "http://10.60.23.21:50940/api/Personas/",
+        url: "http://192.168.1.38:50940/api/Personas/",
         type: 'GET',
 
         // el tipo de información que se espera de respuesta
@@ -80,13 +81,15 @@ Vue.component('master', {
         // la respuesta es pasada como argumento a la función
         success: function(data) {
           debugger;
+          var i = 0;
           for (i = 0; i < data.length; i++) {
             var persona = {};
-            persona.id = data[i].Id;
-            persona.nombre = data[i].Nombre;
-            persona.apellidos = data[i].Apellidos;
-            persona.edad = data[i].Edad;
-            app.personasList.push(persona);
+            persona.Id = data[i].Id;
+            persona.Nombre = data[i].Nombre;
+            persona.Apellidos = data[i].Apellidos;
+            persona.Edad = data[i].Edad;
+            app.$children[0].personasList.push(persona);
+            
           }
 
         },
