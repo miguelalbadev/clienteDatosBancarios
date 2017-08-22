@@ -2,10 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>clientedatosbancarios</title>
+    <title>Datos Bancarios</title>
+    <script src="https://unpkg.com/vue"></script>
+  	<script src="jquery-3.2.1.js" type="text/javascript"></script> 
+  	<link rel="stylesheet" type="text/css" href="style.css">
+
   </head>
   <body>
-    <div id="app"></div>
+    <div class="personList" id="app">
+    <ol>
+        <personas
+          v-for="persona in personasList"
+          v-bind:todo="persona"
+          v-bind:key="persona.id">
+        </personas>
+    </ol>
+  </div>
     <script src="/dist/build.js"></script>
   </body>
 </html>
