@@ -11,7 +11,7 @@ Vue.component('Master', {
           </a>
         </li>
       </div>
-      
+
       <detail></detail>
     </div>
     `,
@@ -19,6 +19,10 @@ Vue.component('Master', {
   data: {
       personas: [],
       persona_selected: null
+  },
+
+  mounted() {
+    this.cargaListado();
   },
 
   methods: {
