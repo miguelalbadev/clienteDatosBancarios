@@ -1,13 +1,13 @@
 import Vue from 'vue'
 
 
-Vue.component('Master', {
+Vue.component('master', {
   template: `
     <div id="app">
       <div id="master">
         <li v-for="persona in personasList">
           <a @href.prevent="" v-on:click="selectPersona(todo.id)">
-            {{ persona.Nombre }} {{ todo.Apellidos }}
+            {{ persona.Nombre }} {{ persona.Apellidos }}
           </a>
         </li>
       </div>
@@ -17,8 +17,8 @@ Vue.component('Master', {
     `,
 
   data: {
-      personas: [],
-      persona_selected: null
+      personasList: [],
+      personaSelected: null
   },
 
   mounted() {
@@ -39,12 +39,17 @@ Vue.component('Master', {
 
         // código a ejecutar si la petición es satisfactoria;
         // la respuesta es pasada como argumento a la función
-        success: (data) => {
+        success: function(data){
           debugger;
-          app2.Name = data.Nombre;
-          app2.LastName = data.Apellidos;
-          app2.Age = data.Edad;
-          app2.Id = data.Id;
+          for(i=0;i<data.length;i++){
+            var persona = {};
+              persona.Id = data[i].Id;
+              persona.Nombre = data[i].Nombre;
+              persona.Apellidos = data[i].Apellidos;
+              persona.Edad = data[i].Edad;
+              persona.Genero = data[i].Genero;
+              this.personasList.push(persona);
+          }
         },
         error: function(xhr, status) {
           debugger;
@@ -93,7 +98,7 @@ Vue.component('Master', {
 
 var app = new Vue({
   el: '#app',
-  created: {
-    window.Vue = this;
+  created(){
+    window.Vue = 'this';
   }
 })
