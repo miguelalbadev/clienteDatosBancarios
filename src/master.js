@@ -13,7 +13,7 @@ var Master = Vue.component('master', {
       <div class="personList" id="master">
         <ol>
           <li v-for="persona in personasList">
-            <a @href.prevent="" v-on:click="selectPersona(persona.Id)">
+            <a @href.prevent="" v-on:click="selectPersona(persona)">
               {{ persona.Nombre }} {{ persona.Apellidos }}
             </a>
           </li>
@@ -36,9 +36,9 @@ var Master = Vue.component('master', {
   },
 
   methods: {
-    selectPersona:function(id) {
+    selectPersona:function(persona) {
       debugger;
-      
+      Vue.$emit('update',persona);
     
      },
 
