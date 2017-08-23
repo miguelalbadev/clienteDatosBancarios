@@ -38,7 +38,7 @@ var Master = Vue.component('master', {
   methods: {
     selectPersona:function(persona) {
       debugger;
-      Vue.$emit('update',persona);
+      app.$emit('update',persona);
     
      },
 
