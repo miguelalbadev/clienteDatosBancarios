@@ -12,7 +12,7 @@ Vue.component('master', {
       <div id="master">
         <li v-for="persona in personasList">
           <a @href.prevent="" v-on:click="selectPersona(persona.Id)">
-            {{ persona.Nombre }} {{ persona.Apellidos }}
+            {{ persona.Nombre }} {{ persona.Apellidos }} 
           </a>
         </li>
       </div>
@@ -35,7 +35,7 @@ Vue.component('master', {
   methods: {
     selectPersona(id) {
       debugger;
-      app2.seen = true;
+      
       $.ajax({
 
         url: "http://192.168.1.38:50940/api/Personas/" + id,
