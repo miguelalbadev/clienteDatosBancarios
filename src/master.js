@@ -79,6 +79,94 @@ var Master = Vue.component('master', {
             //alert('Petición realizada');
         }
     });
+    },
+
+    crearPersona(persona){
+      $.ajax({
+
+        url:"http://10.60.23.21:50940/api/Personas/",
+          type : 'POST',
+
+          // el tipo de información que se espera de respuesta
+          dataType : 'json',
+
+          data : { Nombre: persona.Nombre, Apellidos: persona.Apellidos, Edad:persona.Apellidos, Genero:persona.Genero} ,
+       
+          // código a ejecutar si la petición es satisfactoria;
+          // la respuesta es pasada como argumento a la función
+          success : function(data){
+            debugger;
+            alert('La función POST funcionó correctamente');
+            _this.personasList.push(persona);
+          },
+        error: function(xhr, status){
+          debugger;
+          alert('Disculpe, existió un problema con la función POST');
+        },
+          // código a ejecutar sin importar si la petición falló o no
+          complete : function(xhr, status) {
+              //alert('Petición realizada');
+          }
+      });
+
+
+    },
+
+    eliminarPersona(persona){
+      $.ajax({
+
+        url:"http://10.60.23.21:50940/api/Personas/"+persona.Id,
+          type : 'DELETE',
+
+          // el tipo de información que se espera de respuesta
+          dataType : 'json',
+
+          
+          // código a ejecutar si la petición es satisfactoria;
+          // la respuesta es pasada como argumento a la función
+          success : function(data){
+            debugger;
+            alert('La función DELETE funcionó correctamente');
+            _this.personasList.splice(_this.personasList.indexOf(persona));
+          },
+        error: function(xhr, status){
+          debugger;
+          alert('Disculpe, existió un problema con la función POST');
+        },
+          // código a ejecutar sin importar si la petición falló o no
+          complete : function(xhr, status) {
+              //alert('Petición realizada');
+          }
+      });
+    },
+
+    actualizarPersona(persona){
+
+        $.ajax({
+
+        url:"http://10.60.23.21:50940/api/Personas/"+persona.Id,
+          type : 'PUT',
+
+          // el tipo de información que se espera de respuesta
+          dataType : 'json',
+
+          data : { Nombre: persona.Nombre, Apellidos: persona.Apellidos, Edad:persona.Apellidos, Genero:persona.Genero} ,
+          // código a ejecutar si la petición es satisfactoria;
+          // la respuesta es pasada como argumento a la función
+          success : function(data){
+            debugger;
+            alert('La función PUT funcionó correctamente');
+            _this.personasList.splice(_this.personasList.indexOf(persona));
+          },
+        error: function(xhr, status){
+          debugger;
+          alert('Disculpe, existió un problema con la función POST');
+        },
+          // código a ejecutar sin importar si la petición falló o no
+          complete : function(xhr, status) {
+              //alert('Petición realizada');
+          }
+      });
     }
 
 
