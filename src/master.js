@@ -3,19 +3,21 @@ import Vue from 'vue';
 import detail from './detail.vue';
 
 
-Vue.component('master', {
+var Master = Vue.component('master', {
   components: {
       detail
   },
 
   template: `
     <div id="app">
-      <div id="master">
-        <li v-for="persona in personasList">
-          <a @href.prevent="" v-on:click="selectPersona(persona.Id)">
-            {{ persona.Nombre }} {{ persona.Apellidos }}
-          </a>
-        </li>
+      <div class="personList" id="master">
+        <ol>
+          <li v-for="persona in personasList">
+            <a @href.prevent="" v-on:click="selectPersona(persona.Id)">
+              {{ persona.Nombre }} {{ persona.Apellidos }}
+            </a>
+          </li>
+        </ol>
       </div>
 
       <detail></detail>
@@ -44,11 +46,9 @@ Vue.component('master', {
       let _this = this;
       $.ajax({
 
-
       url:"http://10.60.23.21:50940/api/Personas/",
         type : 'GET',
        
-
         // el tipo de información que se espera de respuesta
         dataType : 'json',
      
@@ -92,5 +92,7 @@ var app = new Vue({
   el: '#app',
   created(){
     window.Vue = this;
-  }
+  },
+
+  render: h=>h(Master)
 })
