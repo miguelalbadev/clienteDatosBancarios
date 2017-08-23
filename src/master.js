@@ -38,20 +38,10 @@ Vue.component('master', {
       debugger;
       
     
-     }   
-  }
-})
+     },
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    personasList: []
-  },
-  mounted:function(){
-    this.cargaListado();
-  },
-  methods:{
-    cargaListado(){
+     cargaListado(){
+      let _this = this;
       $.ajax({
 
 
@@ -75,8 +65,8 @@ var app = new Vue({
             persona.Nombre = data[i].Nombre;
             persona.Apellidos = data[i].Apellidos;
             persona.Edad = data[i].Edad;
-            app.$children[0].personasList.push(persona);
             
+            _this.personasList.push(persona);
 
           }
           
@@ -90,8 +80,12 @@ var app = new Vue({
         }
     });
     }
+
+
   }
 })
+
+
 
 
 var app = new Vue({
