@@ -11,7 +11,12 @@
   <body>
     <div class="personList" id="app">
     <ol>
-        <master></master>
+        <master 
+          v-for="persona in personasList"
+          v-bind:todo="persona"
+          v-bind:key="persona.Id">
+
+        </master>
     </ol>
   </div>
     <script src="/dist/build.js"></script>
